@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bellybutton Biodiversity</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- link to bootstrap css -->
+    <link rel="stylesheet" href="./static/js/style.css"> <!-- link to custom css -->
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 jumbotron text-center bg-dark">
+            <div class="col-md-12 jumbotron jumbo-style text-center">
                 <h1>Belly Button Biodiversity Dashboard</h1>
                 <p>
                     Use the interactive charts below to explore the dataset
@@ -23,11 +24,19 @@
                     <h5>Test Subject ID No.:</h5>
                     <select id="selDataset" onchange="optionChanged(this.value)"></select>
                 </div>
-                <div class="panel panel-primary">
+                <div class="panel panel-custom">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Demographic Data</h3>
+                        <h3 class="panel-title text-center">Demographic Info</h3>
                     </div>
-                    <div id="sample-metadata" class="panel-body"></div>
+                    <div id="sample-metadata" class="panel-body">
+                        <div>id: 940</div>
+                        <div>ethnicity: Caucasian</div>
+                        <div>gender: F</div>
+                        <div>age: 24</div>
+                        <div>location: Beaufort/NC</div>
+                        <div>bbtype: 1</div>
+                        <div>wfreg: 2</div> 
+                    </div>
                 </div>
             </div>
             <div class="col-md-5">
@@ -43,7 +52,6 @@
            </div> 
         </div>
     </div>
-
 
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>

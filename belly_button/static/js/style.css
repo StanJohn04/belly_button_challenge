@@ -1,0 +1,37 @@
+/* set customer color and border for bootstrap jumbotron  */
+.jumbo-style {
+    color: bisque;
+    background-color: darkolivegreen;
+}
+.container .jumbotron {
+    border-radius: 65px;
+}
+
+/* customize panel layout    */
+/* base custom panel setup from https://jsfiddle.net/p0ut4f7e/    */
+.panel-custom {
+    border: 1px solid #ddd;
+    box-shadow:none;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    white-space: nowrap;
+}
+.panel-custom>.panel-heading {
+    color: bisque;
+    background-color: darkslategray;
+    border-color: darkolivegreen;
+    border-radius:40px;
+}
+.panel-custom>.panel-heading>.panel-title {
+    font-size: 15px;
+    font-family:"Lato", Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+}
+.panel-custom>.panel-body {
+    background-color: white;
+    border-color: darkolivegreen;
+    font-size: 14px;
+    font-family:"Lato", Helvetica, Arial, sans-serif;
+}
