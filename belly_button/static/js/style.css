@@ -15,8 +15,7 @@
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    white-space: nowrap;
+    border-bottom-right-radius: 0px
 }
 .panel-custom>.panel-heading {
     color: bisque;
@@ -30,7 +29,7 @@
     line-height: 1.7;
 }
 .panel-custom>.panel-body {
-    background-color: white;
+    background-color: rgb(225, 235, 206);
     border-color: darkolivegreen;
     font-size: 14px;
     font-family:"Lato", Helvetica, Arial, sans-serif;

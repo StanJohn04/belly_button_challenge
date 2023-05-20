@@ -1,3 +1,16 @@
+// Read in json data
+let url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
+let fruits = ['Apple', 'Orange', 'Mango']
+d3.json(url).then((data) => {
+    d3.select("#sample-metadata")
+        .selectAll("p")
+        .data(data.names)
+        .join("p") // the join method
+        .text((d) => d)
+});   
+// console.log(data);
+
+
 // TEST BAR CHART//
 let xValues = ['None', 'Two', 'Four', 'Six', 'Eight', 'Two2', 'Four2', 'Six2', 'Eight2']
 let yValues = [0,2,4,6,8,2,4,6,8]
@@ -43,7 +56,7 @@ let gaugeData = [
             steps:[
                 {
                     range:[0,1],
-                    color:'rgb(238, 238, 226)'
+                    color:'rgb(235, 235, 178)'
                 },
                 {
                     range:[1,2],
@@ -51,15 +64,15 @@ let gaugeData = [
                 },
                 {
                     range:[2,3],
-                    color:'rgb(235, 235, 178)'
+                    color:'rgb(238, 238, 226)'
                 },
                 {
                     range:[3,4],
-                    color:'rgb(238, 238, 136)'
+                    color:'rgb(225, 235, 206)'
                 },
                 {
                     range:[4,5],
-                    color:'rgb(171, 196, 171)'
+                    color:'rgb(224, 240, 193)'
                 },
                 {
                     range:[5,6],
@@ -89,7 +102,7 @@ let gaugeData = [
 
 // TEST BUBBLE CHART //
 let bubbleTrace = {
-    x: [1,2,3,4,],
+    x: [1,2,3,4],
     y:[10,11,20,13],
     mode:"markers",
     marker:{
