@@ -1,3 +1,4 @@
+
 let gaugeData = [
 	{
 		domain: { x: [0, 1], y: [0, 1] },
@@ -29,7 +30,7 @@ let gaugeData = [
                 },
                 {
                     range:[4,5],
-                    color:'rgb(224, 240, 193)'
+                    color:'rgb(175, 210, 175)'
                 },
                 {
                     range:[5,6],
