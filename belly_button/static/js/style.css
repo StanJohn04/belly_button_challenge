@@ -1,36 +1,77 @@
 /* set customer color and border for bootstrap jumbotron  */
 .jumbo-style {
     color: bisque;
-    background-color: darkolivegreen;
+    background-color: rgb(106, 124, 74);
 }
 .container .jumbotron {
     border-radius: 65px;
+    padding:65px;
+    width: 100px ;
 }
 
 /* customize panel layout    */
 /* base custom panel setup from https://jsfiddle.net/p0ut4f7e/    */
-.panel-custom {
-    border: 1px solid #ddd;
+/* layout for select subject ID No. panel  */
+.panel-custom1 {
+    border: 0px solid #ddd;
     box-shadow:none;
     border-top-left-radius: 50px;
     border-top-right-radius: 50px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px
 }
-.panel-custom>.panel-heading {
+.panel-custom1>.panel-heading {
     color: bisque;
     background-color: darkslategray;
     border-color: darkolivegreen;
-    border-radius:40px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px
 }
-.panel-custom>.panel-heading>.panel-title {
+.panel-custom1>.panel-heading>.panel-title {
     font-size: 15px;
     font-family:"Lato", Helvetica, Arial, sans-serif;
     line-height: 1.7;
 }
-.panel-custom>.panel-body {
-    background-color: rgb(225, 235, 206);
+.panel-custom1>.panel-body {
+    background-color: rgb(235, 238, 229);
     border-color: darkolivegreen;
     font-size: 14px;
     font-family:"Lato", Helvetica, Arial, sans-serif;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px
+}
+
+/* layout for demographic info panel  */
+.panel-custom2 {
+    border: 0px solid #ddd;
+    box-shadow:none;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px
+}
+.panel-custom2>.panel-heading {
+    color: bisque;
+    background-color: darkslategray;
+    border-color: darkolivegreen;
+    border-radius:30px;
+}
+.panel-custom2>.panel-heading>.panel-title {
+    font-size: 15px;
+    font-family:"Lato", Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+}
+.panel-custom2>.panel-body {
+    background-color: rgb(235, 238, 229);
+    border-color: darkolivegreen;
+    font-size: 14px;
+    font-family:"Lato", Helvetica, Arial, sans-serif;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px
 }

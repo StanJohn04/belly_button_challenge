@@ -1,121 +1,100 @@
-// Read in json data
+// Read in json data //
 let url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
-let fruits = ['Apple', 'Orange', 'Mango']
-d3.json(url).then((data) => {
-    d3.select("#sample-metadata")
-        .selectAll("p")
-        .data(data.names)
-        .join("p") // the join method
-        .text((d) => d)
-});   
-// console.log(data);
+
+// function to createCharts based on sample //
+function createCharts(sample) {
+    d3.json(url).then(function(data){
+        let samples = data.samples;
+        let filterArray = samples.filter(item =>
+            item.id == sample);
+        let selectSample = filterArray[0];
+        
+        console.log(selectSample)
+        let ids = selectSample.otu_ids;
+        let labels = selectSample.otu_labels;
+        let values = selectSample.sample_values;
+        
+        // bar chart //
+
+        let yValues = ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
+        let xValues = values.slice(0,10).reverse();
+        let text = labels.slice(0,10).reverse();
+
+        let barData = {
+            y:yValues,
+            x:xValues,
+            text:text,
+            type:'bar',
+            orientation:'h',
+            marker:{
+                color:'light blue'
+            }
+        };
+
+        let barLayout = {
+            autosize: false,
+            width: 500,
+            height: 780,
+            margin: {
+            l: 75,
+            r: 50,
+            b: 200,
+            t: 10,
+            pad: 4
+            },
+            // title: "Bar Test",
+            barmode: 'group',
+            // margin: //margin code goes here
+        };
+
+        Plotly.newPlot("bar", [barData], barLayout);
 
 
-// TEST BAR CHART//
-let xValues = ['None', 'Two', 'Four', 'Six', 'Eight', 'Two2', 'Four2', 'Six2', 'Eight2']
-let yValues = [0,2,4,6,8,2,4,6,8]
+        // Bubble Chart //
 
+        let bubbleData = {
+            x:ids,
+            y:values,
+            text:labels,
+            mode:'markers',
+            marker:{
+                color:ids,
+                size:values
+            }
+        }
 
-let barTrace = {
-    y:xValues,
-    x:yValues,
-    type:'bar',
-    orientation:'h'
+        let bubbleLayout = {
+            autosize: false,
+            width: 1200,
+            height: 500,
+            margin: {
+              l: 50,
+              r: 50,
+              b: 100,
+              t: 30,
+              pad: 4
+            },
+            showlegend: false,
+        };
+
+        Plotly.newPlot("bubble", [bubbleData], bubbleLayout)
+    })
 }
 
-let barData = [barTrace];
-
-let barLayout = {
-    title: "Bar Test",
-    barmode: 'group',
-    xaxis: {
-        title: 'X values'
-        // font: {family:<font style>, size: <font size>, color: <font color>}
-    },
-    yaxis:{
-        title:'Y values'
-    }
-    // margin: //margin code goes here
-};
-
-Plotly.newPlot("bar", barData, barLayout);
-
-// GAUGE CHART //
-let gaugeData = [
-	{
-		domain: { x: [0, 1], y: [0, 1] },
-		value: 0,
-		title: { text: "Belly Button Washing Frequency" },
-		type: "indicator",
-		mode: "gauge",
-        gauge:{
-            axis:{
-                range: [0,9],
-                visible: false,
-            },
-            steps:[
-                {
-                    range:[0,1],
-                    color:'rgb(235, 235, 178)'
-                },
-                {
-                    range:[1,2],
-                    color:'rgb(238, 238, 204)'
-                },
-                {
-                    range:[2,3],
-                    color:'rgb(238, 238, 226)'
-                },
-                {
-                    range:[3,4],
-                    color:'rgb(225, 235, 206)'
-                },
-                {
-                    range:[4,5],
-                    color:'rgb(224, 240, 193)'
-                },
-                {
-                    range:[5,6],
-                    color:'rgb(155, 196, 155)'
-                },
-                {
-                    range:[6,7],
-                    color:'rgb(126, 194, 126)'
-                },
-                {
-                    range:[7,8],
-                    color:'rgb(89, 192, 89)'
-                },
-                {
-                    range:[8,9],
-                    color:'rgb(23, 119, 23)'
-                }
-
-            ]
+// initialize charts //
+function init() {
+    // populate dropdown options // 
+    d3.json(url).then(function(data){
+        let nameList = data.names;
+        for (let i = 0; i < nameList.length; i++) {
+            d3.select("#selDataset")
+                .append("option")
+                .text(nameList[i])
+                .property("value", nameList[i])
         }
-	}
-  ];
-  
-  let gaugeLayout = { width: 600, height: 500, margin: { t: 0, b: 0 } };
-  
-  Plotly.newPlot('gauge', gaugeData, gaugeLayout);
+        let firstSample = nameList[0];
+        createCharts(firstSample);
+    })
+}
 
-// TEST BUBBLE CHART //
-let bubbleTrace = {
-    x: [1,2,3,4],
-    y:[10,11,20,13],
-    mode:"markers",
-    marker:{
-        size:[40,60,100,200],
-        color:['yellow','red', 'blue', 'green']
-    }
-};
-
-let bubbleData = [bubbleTrace];
-
-let bubbleLayout = {
-    title: "Bubble Test",
-    showlegend: false,
-};
-
-Plotly.newPlot('bubble', bubbleData, bubbleLayout);
+init();
