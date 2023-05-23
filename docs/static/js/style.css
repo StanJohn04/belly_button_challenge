@@ -24,10 +24,7 @@
     color: bisque;
     background-color: darkslategray;
     border-color: darkolivegreen;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px
+    border-radius: 30px;
 }
 .panel-custom1>.panel-heading>.panel-title {
     font-size: 15px;
@@ -39,8 +36,8 @@
     border-color: darkolivegreen;
     font-size: 14px;
     font-family:"Lato", Helvetica, Arial, sans-serif;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px
 }
