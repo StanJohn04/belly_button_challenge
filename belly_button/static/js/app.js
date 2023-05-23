@@ -2,14 +2,27 @@
 let url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
 
 // function to createCharts based on sample //
-function createCharts(sample) {
+function populateDemoInfo(id) {
+    d3.json(url).then(function(item){
+        let metadata = item.metadata;
+        sampleArray = metadata.filter(item => item.id == id);
+        let selectSample = sampleArray[0];
+        let panel = d3.select("#sample-metadata");
+        panel.html("");
+        Object.entries(selectSample).forEach(([key,value]) =>{
+            panel.append('div').text(`${key}: ${value}`);
+        })
+    })
+}
+
+function createCharts(id) {
     d3.json(url).then(function(data){
         let samples = data.samples;
         let filterArray = samples.filter(item =>
-            item.id == sample);
+            item.id == id);
         let selectSample = filterArray[0];
         
-        console.log(selectSample)
+        // console.log(selectSample)
         let ids = selectSample.otu_ids;
         let labels = selectSample.otu_labels;
         let values = selectSample.sample_values;
@@ -92,9 +105,16 @@ function init() {
                 .text(nameList[i])
                 .property("value", nameList[i])
         }
-        let firstSample = nameList[0];
-        createCharts(firstSample);
+        let firstID = nameList[0];
+        createCharts(firstID);
+        populateDemoInfo(firstID)
     })
 }
+
+function optionChanged(id){
+
+    createCharts(id);
+    populateDemoInfo(id);
+};
 
 init();
