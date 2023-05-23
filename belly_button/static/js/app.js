@@ -4,11 +4,15 @@ let url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1
 // function to createCharts based on sample //
 function populateDemoInfo(id) {
     d3.json(url).then(function(item){
+        // store metadata
         let metadata = item.metadata;
+        // filter for only selected ID
         sampleArray = metadata.filter(item => item.id == id);
         let selectSample = sampleArray[0];
+        //select panel
         let panel = d3.select("#sample-metadata");
         panel.html("");
+        //populate panel with key:value pairs
         Object.entries(selectSample).forEach(([key,value]) =>{
             panel.append('div').text(`${key}: ${value}`);
         })
@@ -16,19 +20,19 @@ function populateDemoInfo(id) {
 }
 
 function createCharts(id) {
+    // read in json data and filter for ID
     d3.json(url).then(function(data){
         let samples = data.samples;
         let filterArray = samples.filter(item =>
             item.id == id);
         let selectSample = filterArray[0];
         
-        // console.log(selectSample)
+        //store data in variables for plotting
         let ids = selectSample.otu_ids;
         let labels = selectSample.otu_labels;
         let values = selectSample.sample_values;
         
         // bar chart //
-
         let yValues = ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse();
         let xValues = values.slice(0,10).reverse();
         let text = labels.slice(0,10).reverse();
@@ -43,7 +47,6 @@ function createCharts(id) {
                 color:'light blue'
             }
         };
-
         let barLayout = {
             autosize: false,
             width: 500,
@@ -59,12 +62,9 @@ function createCharts(id) {
             barmode: 'group',
             // margin: //margin code goes here
         };
-
         Plotly.newPlot("bar", [barData], barLayout);
 
-
         // Bubble Chart //
-
         let bubbleData = {
             x:ids,
             y:values,
@@ -75,7 +75,6 @@ function createCharts(id) {
                 size:values
             }
         }
-
         let bubbleLayout = {
             autosize: false,
             width: 1200,
@@ -89,7 +88,6 @@ function createCharts(id) {
             },
             showlegend: false,
         };
-
         Plotly.newPlot("bubble", [bubbleData], bubbleLayout)
     })
 }
@@ -105,14 +103,16 @@ function init() {
                 .text(nameList[i])
                 .property("value", nameList[i])
         }
+
+    // use first id to populate initial charts
         let firstID = nameList[0];
         createCharts(firstID);
         populateDemoInfo(firstID)
     })
 }
 
+// create function for dropdown.on("change")
 function optionChanged(id){
-
     createCharts(id);
     populateDemoInfo(id);
 };
