@@ -116,6 +116,7 @@ function init() {
 function optionChanged(id){
     createCharts(id);
     populateDemoInfo(id);
+    buildGauge(id);
 };
 
 init();
